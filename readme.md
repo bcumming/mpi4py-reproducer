@@ -1,6 +1,8 @@
 #  Reproducer of MPI4PY linking issue on Daint.
 
 ```
+git clone https://github.com/bcumming/mpi4py-reproducer.git --recursive
+
 module load daint-mc
 module swap PrgEnv-cray PrgEnv-gnu  
 module load CMake
