@@ -36,7 +36,7 @@ Below, both gcc 5 and 6 link against `/opt/cray/pe/lib64/libmpich_gnu_51.so.3`
 > module swap gcc/5.3.0
 > cmake ..
 > ldd mpitest.cpython-36m-x86_64-linux-gnu.so | grep libmpich
-    libmpich_gnu_51.so.3 => /opt/cray/pe/lib64/libmpich_gnu_51.so.3 (0x00002b99d7132000))
+    libmpich_gnu_51.so.3 => /opt/cray/pe/lib64/libmpich_gnu_51.so.3 (0x00002b99d7132000)
 > srun -n1 python ../test.py
 MPI has not been initialized
 MPI has been initialized
@@ -50,7 +50,7 @@ according to mpi4py: 0 of 1
 > module swap gcc/6.1.0
 > cmake ..
 > ldd mpitest.cpython-36m-x86_64-linux-gnu.so | grep libmpich
-    libmpich_gnu_51.so.3 => /opt/cray/pe/lib64/libmpich_gnu_51.so.3 (0x00002b99d7132000))
+    libmpich_gnu_51.so.3 => /opt/cray/pe/lib64/libmpich_gnu_51.so.3 (0x00002b99d7132000)
 > srun -n1 python ../test.py
 MPI has not been initialized
 MPI has been initialized
@@ -60,11 +60,13 @@ according to mpi4py: 0 of 1
 
 ## gcc 7.3
 
+But when compiled with gcc, a different mpich library is linked against our target.
+
 ```
 > module swap gcc/7.3.0
 > cmake ..
 > ldd mpitest.cpython-36m-x86_64-linux-gnu.so | grep libmpich
-    libmpich_gnu_51.so.3 => /opt/cray/pe/lib64/libmpich_gnu_51.so.3 (0x00002b99d7132000))
+    libmpich_gnu_71.so.3 => /opt/cray/pe/mpt/7.7.2/gni/mpich-gnu/7.1/lib/libmpich_gnu_71.so.3 (0x00002b67f8965000)
 > srun -n1 python ../test.py
 MPI has not been initialized
 MPI has not been initialized
