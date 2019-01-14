@@ -74,3 +74,33 @@ Attempting to use an MPI routine before initializing MPICH
 srun: error: nid00056: task 0: Exited with exit code 1
 srun: Terminating job step 11406222.10
 ```
+
+## Local Fix
+
+I fixed the problem locally by installing my own version of mpi4py built with the toolchain used by my project.
+
+```
+#module list
+#Currently Loaded Modulefiles:
+#  1) modules/3.2.10.6
+#  2) gcc/7.3.0
+#  3) craype-broadwell
+#  4) craype-network-aries
+#  5) craype/2.5.15
+#  6) cray-mpich/7.7.2
+# ....                                                                                                   
+# 22) PrgEnv-gnu/6.0.4
+# 23) daint-mc
+# 24) CMake/.3.12.0
+# 25) CrayGNU/.18.08
+# 26) cray-python/3.6.5.1
+# 27) PyExtensions/3.6.5.1-CrayGNU-18.08
+
+git clone git@github.com:mpi4py/mpi4py.git --recursive
+cd mpi4py
+git checkout 3.0.0
+python setup.py build --mpicc=`which cc` 
+python setup.py install --user
+
+# The result is installed in ~/.local/lib/python3.6/site-packages/
+```
